@@ -29,24 +29,27 @@ class Player:
         # Defining a string representation for the player object
         return f"{self.player_name} - {self.club}, {self.league}, {self.country} ({self.year})"
 
-# Defining a function to calculate the average goals for a list of players
+# Updated function for calculating average goals for a list of players
 def calculate_average_goals(players):
     total_goals = sum(player.goals for player in players)
     total_players = len(players)
-    return total_goals / total_players if total_players > 0 else 0
+    # Used round() to round the result to 3 decimal places
+    return round(total_goals / total_players, 3) if total_players > 0 else 0
 
-# Defining a function to export analyzed player data to a CSV file
+# Updated function to export analyzed player data to a CSV file
 def export_analyzed_data(players, export_path="analyzed_data.csv"):
     try:
+        # Updated to format average goals with three decimals
         analyzed_data = {
             'Player Names': [player.player_name for player in players],
             'Goals': [player.goals for player in players],
-            'Average Goals': [player.goals / player.matches_played if player.matches_played > 0 else 0 for player in players],
+            'Average Goals': [round(player.goals / player.matches_played, 3) if player.matches_played > 0 else 0 for player in players],
         }
 
-        # Attempting to create a DataFrame and save it to a CSV file
+        # Created a DataFrame from the dictionary
         analyzed_df = pd.DataFrame(analyzed_data)
-        analyzed_df.to_csv(export_path, index=False)
+        # Exported the DataFrame to a CSV file, ensuring that the floating-point numbers
+        analyzed_df.to_csv(export_path, index=False, float_format='%.3f')
 
         print(f"Analyzed data exported to {export_path}")
 
