@@ -16,7 +16,7 @@ def visualize_top_scorers(players, top_n=10):
     plt.xlabel('Goals')
     plt.ylabel('Player Names')
     plt.title('Top Goal Scorers')
-    plt.gca().invert_yaxis()  # To display the top scorer at the top of the bar chart
+    plt.gca().invert_yaxis()  # This is to display the top scorer at the top of the bar chart
     plt.tight_layout()
 
     # Checking if the 'figures' directory exists, if not, create it
@@ -48,8 +48,4 @@ def visualize_shots_vs_goals(players):
     # Displaying the plot
     fig.show()
 
-# If you want to run this script directly, you can use the following lines:
-# if __name__ == "__main__":
-#     # Assuming 'players' is a list of Player objects
-#     visualize_top_scorers(players)
-#     visualize_shots_vs_goals(players)
+
